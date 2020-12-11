@@ -16,7 +16,7 @@
 	"contributes": {
 		"commands": [{
             "command": "ebcdic-converter.convert2utf8",
-            "title": "Convert 2 UTF-8"
+            "title": "Convert To UTF-8"
 
 		}]
 	},
