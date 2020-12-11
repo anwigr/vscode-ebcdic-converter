@@ -10,13 +10,13 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:ebcdic-converter.helloWorld"
+        "onCommand:ebcdic-converter.convert2utf8"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [{
-            "command": "ebcdic-converter.helloWorld",
-            "title": "Hello World"
+            "command": "ebcdic-converter.convert2utf8",
+            "title": "Convert 2 UTF-8"
 
 		}]
 	},
