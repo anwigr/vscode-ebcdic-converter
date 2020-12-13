@@ -12,26 +12,32 @@ const ebcdic2utf8 = require('./converters/ebcdic2utf8');
 function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "ebcdic-converter" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
+	
 	let disposable = vscode.commands.registerCommand('ebcdic-converter.convert2utf8', function () {
-		// The code you place here will be executed every time your command is executed
+		
+		//Get text from current editor
+		const activeEditor = vscode.window.activeTextEditor;
+		var firstLine = activeEditor.document.lineAt(0);
+		var lastLine = activeEditor.document.lineAt(activeEditor.document.lineCount - 1);
+		var textRange = new vscode.Range(firstLine.range.start, lastLine.range.end);
+		var wholeText = activeEditor.document.getText(textRange);
 
+		ebcdic2utf8.convert(wholeText);
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello, I am EBCDIC Converter! Soon I will be able to convert your precious EBCDIC characters to something less legacy-ish.');
-		ebcdic2utf8.convert();
+
 	});
 
 	context.subscriptions.push(disposable);
 }
-exports.activate = activate;
+//exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() {
+
+	console.log('Extension "ebcdic-converter" is now deactiveted!');
+}
 
 module.exports = {
 	activate,
